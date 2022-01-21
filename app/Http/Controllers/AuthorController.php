@@ -19,10 +19,8 @@ class AuthorController extends Controller
      *
      * @return void
      */
-    public function __construct(AuthorService $authorService)
-    {
+    public function __construct(AuthorService $authorService){
         //
-
         $this->authorService = $authorService;
     }
 
@@ -30,45 +28,39 @@ class AuthorController extends Controller
      * Return the list of authors
      * @return Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         return $this->successResponse($this->authorService->obtainAuthors());
-
     }
 
     /**
      * Create one new author
      * @return Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-       
+    public function store(Request $request){
+       return $this->successResponse($this->authorService->createAuthor($request->all(), Response::HTTP_CREATED));
     }
 
     /**
      * Obtains and show one author
      * @return Illuminate\Http\Response
      */
-    public function show($author)
-    {
-       
+    public function show($author){
+        return $this->successResponse($this->authorService->obtainAuthor($author));
     }
 
     /**
      * Update an existing author
      * @return Illuminate\Http\Response
      */
-    public function update(Request $request, $author)
-    {
-      
+    public function update(Request $request, $author){
+        return $this->successResponse($this->authorService->editAuthor($request->all(), $author));
     }
 
     /**
      * Remove an existing author
      * @return Illuminate\Http\Response
      */
-    public function destroy($author)
-    {
-        
+    public function destroy($author){
+        return $this->successResponse($this->authorService->deleteAuthor($author));
     }
 }
