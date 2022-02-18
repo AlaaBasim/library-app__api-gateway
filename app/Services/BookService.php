@@ -9,8 +9,11 @@ class BookService{
 
     public $baseUri;
 
+    protected $secret; 
+
     public function __construct(){
         $this->baseUri = env('BOOKS_SERVICE_BASE_URL');
+        $this->secret = env('BOOKS_SERVICE_SECRET');
     }
 
     public function obtainBooks(){

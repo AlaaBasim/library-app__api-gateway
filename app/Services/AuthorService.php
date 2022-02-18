@@ -9,8 +9,11 @@ class AuthorService{
 
     public $baseUri;
 
+    protected $secret;
+
     public function __construct(){
         $this->baseUri = env('AUTHORS_SERVICE_BASE_URL');
+        $this->secret = env('AUTHORS_SERVICE_SECRET');
     }
 
 
